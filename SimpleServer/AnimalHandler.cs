@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using Mono.Data.Sqlite;
 
 namespace SimpleServer
 {
@@ -25,13 +24,13 @@ namespace SimpleServer
 				FROM Animal a
 				INNER JOIN Species s ON a.IdSpecies = s.IdSpecies
 				INNER JOIN Habitat h ON h.IdHabitat = a.IdHabitat
-				INNER JOIN HabitatType ht on ht.IdType = h.IdType
+				INNER JOIN HabitatType ht on ht.IdHabitatType = h.IdHabitatType
 				WHERE a.IdAnimal = 
 				" + IdAnimal;
 
-			const string connectionString = "URI=file:/Users/stevebrownlee/dev/github/chortlehoort/SimpleServer/SimpleServer/Zoolandia.db";
+            const string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + "\"C:\\Users\\dylan\\Documents\\Visual Studio 2015\\Projects\\Zoolandia\\Zoolandia\\Zoolandia\\ZoolandiaDatabase.mdf\";Integrated Security=True";
 
-			System.Data.IDbConnection dbcon = new SqliteConnection(connectionString);
+            System.Data.IDbConnection dbcon = new SqlConnection(connectionString);
 
 			dbcon.Open();
 			IDbCommand dbcmd = dbcon.CreateCommand();
@@ -74,12 +73,11 @@ namespace SimpleServer
 				FROM Animal a
 				INNER JOIN Species s ON a.IdSpecies = s.IdSpecies
 				INNER JOIN Habitat h ON h.IdHabitat = a.IdHabitat
-				INNER JOIN HabitatType ht on ht.IdType = h.IdType
+				INNER JOIN HabitatType ht on ht.IdHabitatType = h.IdHabitatType
 				";
 
-			const string connectionString = "URI=file:/Users/stevebrownlee/dev/github/chortlehoort/SimpleServer/SimpleServer/Zoolandia.db";
-
-			System.Data.IDbConnection dbcon = new SqliteConnection(connectionString);
+            const string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename="+ "\"C:\\Users\\dylan\\Documents\\Visual Studio 2015\\Projects\\Zoolandia\\Zoolandia\\Zoolandia\\ZoolandiaDatabase.mdf\";Integrated Security=True";
+        System.Data.IDbConnection dbcon = new SqlConnection(connectionString);
 
 			dbcon.Open();
 			IDbCommand dbcmd = dbcon.CreateCommand();
